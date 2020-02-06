@@ -2,22 +2,22 @@ package com.fpedro.cursomc;
 
 import java.util.Arrays;
 
+import com.fpedro.cursomc.domain.Categoria;
+import com.fpedro.cursomc.domain.Usuario;
+import com.fpedro.cursomc.repositories.CategoriaRepository;
+import com.fpedro.cursomc.repositories.UsuarioRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import com.fpedro.cursomc.domain.Categoria;
-import com.fpedro.cursomc.domain.Produto;
-import com.fpedro.cursomc.repositories.CategoriaRepository;
-import com.fpedro.cursomc.repositories.ProdutoRepository;
 
 @SpringBootApplication
 public class CursomcApplication implements CommandLineRunner {
 	@Autowired
 	private CategoriaRepository	categoriaRepository;
 	@Autowired
-	private ProdutoRepository produtoRepository;
+	private UsuarioRepository usuarioRepository;
 	
 	
 	public static void main(String[] args) {
@@ -27,23 +27,26 @@ public class CursomcApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Categoria cat1 = new Categoria(null, "Informática");
-		Categoria cat2 = new Categoria(null, "Escritório");
+		Categoria cat1 = new Categoria(null, "Motorista");
+		Categoria cat2 = new Categoria(null, "Carona");
 		
-		Produto p1 = new Produto(null, "Computodor", 2000.00);
-		Produto p2 = new Produto(null, "Impressora", 800.00 );
-		Produto p3 = new Produto(null, "Mouse", 80.00);
+		Usuario p1 = new Usuario(null, "Fernando", 33);
+		Usuario p2 = new Usuario(null, "Renato", 32 );
+		Usuario p3 = new Usuario(null, "Andreson", 35);
+		Usuario p4 = new Usuario(null, "Arthur", 25);
 		
-		cat1.getProdutos().addAll(Arrays.asList(p1, p2, p3));
-		cat2.getProdutos().addAll(Arrays.asList(p2));
+		cat1.getUsuarios().addAll(Arrays.asList(p1, p2, p3));
+		cat2.getUsuarios().addAll(Arrays.asList(p1, p2));
 		
-		p1.getCategorias().addAll(Arrays.asList(cat1));
-		p2.getCategorias().addAll(Arrays.asList(cat1, cat2));
+		p1.getCategorias().addAll(Arrays.asList(cat1, cat2));
+		p2.getCategorias().addAll(Arrays.asList(cat1));
 		p3.getCategorias().addAll(Arrays.asList(cat1));
+		p4.getCategorias().addAll(Arrays.asList(cat1, cat2));
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
-		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
+		usuarioRepository.saveAll(Arrays.asList(p1, p2, p3, p4));
 		
 	}
 
 }
+

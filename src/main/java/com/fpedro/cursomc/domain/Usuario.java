@@ -15,32 +15,32 @@ import javax.persistence.ManyToMany;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-public class Produto implements Serializable {
+public class Usuario implements Serializable {
 	 private static final long serialVersionUID = 1L;
 	 	
 	 @Id
 	 @GeneratedValue(strategy=GenerationType.IDENTITY)
 		private Integer id;
 		private String nome;
-		private Double preco;
+		private Integer idade;
 		
 		@JsonBackReference
 		@ManyToMany
-		@JoinTable(name = "PRODUTO_CATEGORIA", 
-		joinColumns = @JoinColumn(name = "produto_id"),
+		@JoinTable(name = "USUARIO_CATEGORIA", 
+		joinColumns = @JoinColumn(name = "usuarioo_id"),
 		inverseJoinColumns = @JoinColumn(name = "categoria_id")
 				)
 		private List<Categoria> categorias = new ArrayList<>();
 		
-		public Produto() {
+		public Usuario() {
 			
 		}
 
-		public Produto(Integer id, String nome, Double preco) {
+		public Usuario(Integer id, String nome, Integer idade) {
 			super();
 			this.id = id;
 			this.nome = nome;
-			this.preco = preco;
+			this.idade = idade;
 		}
 
 		public Integer getId() {
@@ -59,12 +59,12 @@ public class Produto implements Serializable {
 			this.nome = nome;
 		}
 
-		public Double getPreco() {
-			return preco;
+		public Integer getidade() {
+			return idade;
 		}
 
-		public void setPreco(Double preco) {
-			this.preco = preco;
+		public void setidade(Integer idade) {
+			this.idade = idade;
 		}
 
 		public List<Categoria> getCategorias() {
@@ -91,7 +91,7 @@ public class Produto implements Serializable {
 				return false;
 			if (getClass() != obj.getClass())
 				return false;
-			Produto other = (Produto) obj;
+			Usuario other = (Usuario) obj;
 			if (id == null) {
 				if (other.id != null)
 					return false;
