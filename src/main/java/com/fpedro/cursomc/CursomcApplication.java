@@ -35,12 +35,12 @@ public class CursomcApplication implements CommandLineRunner {
 		Usuario p3 = new Usuario(null, "Andreson", 35);
 		Usuario p4 = new Usuario(null, "Arthur", 25);
 		
-		cat1.getUsuarios().addAll(Arrays.asList(p1, p2, p3));
-		cat2.getUsuarios().addAll(Arrays.asList(p1, p2));
+		cat1.getUsuarios().addAll(Arrays.asList(p1, p4));
+		cat2.getUsuarios().addAll(Arrays.asList(p1, p2, p3, p4));
 		
 		p1.getCategorias().addAll(Arrays.asList(cat1, cat2));
-		p2.getCategorias().addAll(Arrays.asList(cat1));
-		p3.getCategorias().addAll(Arrays.asList(cat1));
+		p2.getCategorias().addAll(Arrays.asList(cat2));
+		p3.getCategorias().addAll(Arrays.asList(cat2));
 		p4.getCategorias().addAll(Arrays.asList(cat1, cat2));
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
