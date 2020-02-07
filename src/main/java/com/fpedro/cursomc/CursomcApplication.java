@@ -23,7 +23,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class CursomcApplication implements CommandLineRunner {
-	
+
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	@Autowired
@@ -73,7 +73,6 @@ public class CursomcApplication implements CommandLineRunner {
 		est2.getCidades().addAll(Arrays.asList(c2));
 		est3.getCidades().addAll(Arrays.asList(c3));
 
-
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 		usuarioRepository.saveAll(Arrays.asList(p1, p2, p3, p4));
 
@@ -81,15 +80,24 @@ public class CursomcApplication implements CommandLineRunner {
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3, c4));
 
 		Cliente cli1 = new Cliente(null, "Fernando Pedro", "email@email.com", "06848578479", TipoCliente.PESSOAFISICA);
+
+		Cliente cli2 = new Cliente(null, "Renato Valentin", "renato@email.com", "32548578479",
+				TipoCliente.PESSOAFISICA);
+		Cliente cli3 = new Cliente(null, "Arthur Vinícius", "arthur@email.com", "32548578479",
+				TipoCliente.PESSOAFISICA);
+
 		cli1.getTelefones().addAll(Arrays.asList("99307312", "982991925"));
+		cli2.getTelefones().addAll(Arrays.asList("92565897", "989988522"));
+		cli3.getTelefones().addAll(Arrays.asList("99898987", "997888985"));
 
-		Endereco e1 = new Endereco(null, "Rua Joaquim Bezerra", "194", "Centro", "33435989", null, cli1, c1 );
-		Endereco e2 = new Endereco(null, "Rua aldeia velha", "304", "Muribará", "9883598", null, cli1, c2);
-		
-		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		Endereco e1 = new Endereco(null, "Rua Joaquim Bezerra", "194", "Centro", "33435989", null, cli1, c1);
+		Endereco e2 = new Endereco(null, "Rua aldeia velha", "304", "Muribará", "9883598", null, cli2, c2);
+		Endereco e3 = new Endereco(null, "Rua Joaquim Bezerra", "194", "Centro", "33435989", null, cli3, c3);
 
-		clienteRepository.saveAll(Arrays.asList(cli1));
-		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+		cli1.getEnderecos().addAll(Arrays.asList(e1, e2, e3));
+
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2, cli3));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3));
 
 		// asdfasdfa
 	}
