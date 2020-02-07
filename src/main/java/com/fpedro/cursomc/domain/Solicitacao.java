@@ -3,21 +3,36 @@ package com.fpedro.cursomc.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Solicitacao  implements Serializable {
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+@Entity
+public class Solicitacao implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+
+    @Id
+
     private Integer Id;
     private Date instante;
 
-private Pagamento pagamento;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Pagamento pagamento;
 
-private Cliente cliente;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
-private Endereco enderecoDeEntrega;
+    @ManyToOne
+    @JoinColumn(name = "endereco_de_entrega_id")
+    private Endereco enderecoDeEntrega;
 
-public Solicitacao (){
+    public Solicitacao() {
 
-}
+    }
 
     public Solicitacao(Integer id, Date instante, Pagamento pagamento, Cliente cliente, Endereco enderecoDeEntrega) {
         Id = id;
@@ -91,6 +106,5 @@ public Solicitacao (){
             return false;
         return true;
     }
-
 
 }

@@ -2,11 +2,11 @@ package com.fpedro.cursomc.domain;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+
 import com.fpedro.cursomc.enums.EstadoPagamento;
 
-/**
- * Pagamento
- */
+@Entity
 public class PagamentoComBoleto extends Pagamento {
     private static final long serialVersionUID = 1L;
 
