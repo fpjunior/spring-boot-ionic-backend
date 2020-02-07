@@ -21,7 +21,7 @@ import com.fpedro.cursomc.enums.TipoCliente;
 public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
@@ -29,18 +29,27 @@ public class Cliente implements Serializable {
     private String cpfOuCnpj;
     private Integer tipo;
 
-    
     @JsonManagedReference
     @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos = new ArrayList<>();
-    
+
     @ElementCollection
     @CollectionTable(name = "TELEFONE")
     private Set<String> telefones = new HashSet<>();
 
-   public Cliente(){
-       
-   }
+    private List<Solicitacao> solicitacao = new ArrayList<>();
+
+    public Cliente() {
+
+    }
+
+    public List<Solicitacao> getSolicitacao() {
+        return solicitacao;
+    }
+
+    public void setSolicitacao(List<Solicitacao> solicitacao) {
+        this.solicitacao = solicitacao;
+    }
 
     public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
         this.id = id;
