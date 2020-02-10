@@ -2,6 +2,8 @@ package com.fpedro.cursomc.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -31,6 +33,8 @@ public class Solicitacao implements Serializable {
     @ManyToOne
     @JoinColumn(name = "endereco_de_entrega_id")
     private Endereco enderecoDeEntrega;
+    
+   private Set<ItemSolicitacao> itens = new HashSet<>();
 
     public Solicitacao() {
 
@@ -108,5 +112,13 @@ public class Solicitacao implements Serializable {
             return false;
         return true;
     }
+
+	public Set<ItemSolicitacao> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<ItemSolicitacao> itens) {
+		this.itens = itens;
+	}
 
 }

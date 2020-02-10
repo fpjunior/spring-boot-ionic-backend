@@ -2,7 +2,9 @@ package com.fpedro.cursomc.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,88 +18,86 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Usuario implements Serializable {
-	 private static final long serialVersionUID = 1L;
-	 	
-	 @Id
-	 @GeneratedValue(strategy=GenerationType.IDENTITY)
-		private Integer id;
-		private String nome;
-		private Integer idade;
-		
-		@JsonBackReference
-		@ManyToMany
-		@JoinTable(name = "USUARIO_CATEGORIA", 
-		joinColumns = @JoinColumn(name = "usuarioo_id"),
-		inverseJoinColumns = @JoinColumn(name = "categoria_id")
-				)
-		private List<Categoria> categorias = new ArrayList<>();
-		
-		public Usuario() {
-			
-		}
+	private static final long serialVersionUID = 1L;
 
-		public Usuario(Integer id, String nome, Integer idade) {
-			super();
-			this.id = id;
-			this.nome = nome;
-			this.idade = idade;
-		}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	private String nome;
+	private Integer idade;
 
-		public Integer getId() {
-			return id;
-		}
+	@JsonBackReference
+	@ManyToMany
+	@JoinTable(name = "USUARIO_CATEGORIA", joinColumns = @JoinColumn(name = "usuarioo_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+	private List<Categoria> categorias = new ArrayList<>();
+	private Set<ItemSolicitacao> itens = new HashSet<>();
 
-		public void setId(Integer id) {
-			this.id = id;
-		}
+	public Usuario() {
 
-		public String getNome() {
-			return nome;
-		}
+	}
 
-		public void setNome(String nome) {
-			this.nome = nome;
-		}
+	public Usuario(Integer id, String nome, Integer idade) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.idade = idade;
+	}
 
-		public Integer getidade() {
-			return idade;
-		}
+	public Integer getId() {
+		return id;
+	}
 
-		public void setidade(Integer idade) {
-			this.idade = idade;
-		}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-		public List<Categoria> getCategorias() {
-			return categorias;
-		}
+	public String getNome() {
+		return nome;
+	}
 
-		public void setCategorias(List<Categoria> categorias) {
-			this.categorias = categorias;
-		}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + ((id == null) ? 0 : id.hashCode());
-			return result;
-		}
+	public Integer getidade() {
+		return idade;
+	}
 
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			Usuario other = (Usuario) obj;
-			if (id == null) {
-				if (other.id != null)
-					return false;
-			} else if (!id.equals(other.id))
-				return false;
+	public void setidade(Integer idade) {
+		this.idade = idade;
+	}
+
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
 			return true;
-		}
-		
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
 }
