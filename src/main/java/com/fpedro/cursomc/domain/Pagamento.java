@@ -20,7 +20,7 @@ private static final long serialVersionUID = 1L;
 
     @Id 
     private Integer id;
-    private EstadoPagamento estado;
+    private Integer estado;
 
     @OneToOne
     @JoinColumn(name = "pedido_id")
@@ -34,7 +34,7 @@ private static final long serialVersionUID = 1L;
 
     public Pagamento(Integer id, EstadoPagamento estado, Solicitacao solicitacao) {
         this.id = id;
-        this.estado = estado;
+        this.estado = estado.getCod();
         this.solicitacao = solicitacao;
     }
 
@@ -47,11 +47,11 @@ private static final long serialVersionUID = 1L;
     }
 
     public EstadoPagamento getEstado() {
-        return estado;
+        return EstadoPagamento.toEnum(estado);
     }
 
     public void setEstado(EstadoPagamento estado) {
-        this.estado = estado;
+        this.estado = estado.getCod();
     }
 
     public Solicitacao getSolicitacao() {

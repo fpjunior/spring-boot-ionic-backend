@@ -51,4 +51,9 @@
         throw new IllegalArgumentException("id inválido" + cod);
 
     }
+
+	public static EstadoPagamento toEnum(Integer estado) {
+		// TODO Auto-generated method stub
+		return null;
+	}
  }
