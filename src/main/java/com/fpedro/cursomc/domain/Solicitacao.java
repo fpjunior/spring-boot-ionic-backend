@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,11 +17,11 @@ public class Solicitacao implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer Id;
     private Date instante;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy="solicitacao")
     private Pagamento pagamento;
 
     @ManyToOne
@@ -34,7 +36,7 @@ public class Solicitacao implements Serializable {
 
     }
 
-    public Solicitacao(Integer id, Date instante, Pagamento pagamento, Cliente cliente, Endereco enderecoDeEntrega) {
+    public Solicitacao(Integer id, Date instante, Cliente cliente, Endereco enderecoDeEntrega) {
         Id = id;
         this.instante = instante;
         this.pagamento = pagamento;
