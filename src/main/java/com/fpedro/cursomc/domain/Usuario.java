@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -28,8 +29,13 @@ public class Usuario implements Serializable {
 
 	@JsonBackReference
 	@ManyToMany
-	@JoinTable(name = "USUARIO_CATEGORIA", joinColumns = @JoinColumn(name = "usuarioo_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+	@JoinTable(name = "USUARIO_CATEGORIA", 
+		joinColumns = @JoinColumn(name = "usuario_id"), 
+		inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+	
 	private List<Categoria> categorias = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "id.usuario")
 	private Set<ItemSolicitacao> itens = new HashSet<>();
 
 	public Usuario() {
@@ -41,6 +47,14 @@ public class Usuario implements Serializable {
 		this.id = id;
 		this.nome = nome;
 		this.idade = idade;
+	}
+
+	public List<Solicitacao>  getSolicitacoes(){
+		List<Solicitacao> lista = new ArrayList<>();
+		for (ItemSolicitacao x : itens) {
+			lista.add(x.getSolicitacao());
+		}
+		return lista;
 	}
 
 	public Integer getId() {
@@ -73,6 +87,14 @@ public class Usuario implements Serializable {
 
 	public void setCategorias(List<Categoria> categorias) {
 		this.categorias = categorias;
+	}
+
+	public Set<ItemSolicitacao> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<ItemSolicitacao> itens) {
+		this.itens = itens;
 	}
 
 	@Override

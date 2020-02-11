@@ -3,9 +3,11 @@ package com.fpedro.cursomc.domain;
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
 
 @Embeddable
 public class ItemSolicitacaoPK implements Serializable {
@@ -14,7 +16,8 @@ public class ItemSolicitacaoPK implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "solicitacao_id")
 	private Solicitacao solicitacao;
-	@ManyToMany
+
+	@ManyToOne
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 

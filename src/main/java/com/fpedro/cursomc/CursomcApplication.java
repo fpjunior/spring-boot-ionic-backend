@@ -13,6 +13,7 @@ import com.fpedro.cursomc.domain.Cidade;
 import com.fpedro.cursomc.domain.Cliente;
 import com.fpedro.cursomc.domain.Endereco;
 import com.fpedro.cursomc.domain.Estado;
+import com.fpedro.cursomc.domain.ItemSolicitacao;
 import com.fpedro.cursomc.domain.Pagamento;
 import com.fpedro.cursomc.domain.PagamentoComBoleto;
 import com.fpedro.cursomc.domain.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.fpedro.cursomc.repositories.CidadeRepository;
 import com.fpedro.cursomc.repositories.ClienteRepository;
 import com.fpedro.cursomc.repositories.EnderecoRepository;
 import com.fpedro.cursomc.repositories.EstadoRepository;
+import com.fpedro.cursomc.repositories.ItemSolicitacaoRepository;
 import com.fpedro.cursomc.repositories.PagamentoRepository;
 import com.fpedro.cursomc.repositories.SolicitacaoRepository;
 import com.fpedro.cursomc.repositories.UsuarioRepository;
@@ -49,6 +51,10 @@ public class CursomcApplication implements CommandLineRunner {
 	private SolicitacaoRepository solicitacaoRepository;
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	@Autowired
+	private ItemSolicitacaoRepository itemSolicitacaoRepository;
+
+	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -126,6 +132,23 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		solicitacaoRepository.saveAll(Arrays.asList(ped1, ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
+		
+		ItemSolicitacao ip1 = new ItemSolicitacao(ped1, p1, 0.00, 1, 2000.00);
+		ItemSolicitacao ip2 = new ItemSolicitacao(ped1, p3, 0.00, 2, 80.00);
+		ItemSolicitacao ip3 = new ItemSolicitacao(ped2, p2, 100.00, 1, 800.00);
+		
+		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
+		ped2.getItens().addAll(Arrays.asList(ip3));
+		
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip3));
+		p3.getItens().addAll(Arrays.asList(ip2));
+		
+		
+		itemSolicitacaoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
+		
+		
+		
 		
 	}
 
