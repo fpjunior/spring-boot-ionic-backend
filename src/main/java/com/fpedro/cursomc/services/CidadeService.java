@@ -7,26 +7,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.fpedro.cursomc.domain.Categoria;
-import com.fpedro.cursomc.repositories.CategoriaRepository;
+import com.fpedro.cursomc.domain.Cidade;
+import com.fpedro.cursomc.repositories.CidadeRepository;
 
 @Service
-public class CategoriaService {
+public class CidadeService {
 	@Autowired
-	private CategoriaRepository repo;
+	private CidadeRepository repo;
 
-	public Categoria find(Integer id) {
-		Optional<Categoria> obj = repo.findById(id);
+	public Cidade find(Integer id) {
+		Optional<Cidade> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new com.fpedro.cursomc.services.exception.ObjectNotFoundException(
-				"Objeto não encontrado ! Id: " + id + ", Tipo: " + Categoria.class.getName()));
+				"Objeto não encontrado ! Id: " + id + ", Tipo: " + Cidade.class.getName()));
 	}
 
-	public Categoria insert(Categoria obj) {
+	public Cidade insert(Cidade obj) {
 		obj.setId(null);
 		return repo.save(obj);
 	}
 
-	public Categoria update(Categoria obj) {
+	public Cidade update(Cidade obj) {
 		find(obj.getId());
 		return repo.save(obj);
 	}
@@ -42,7 +42,7 @@ public class CategoriaService {
 		}
 	}
 	
-	public List<Categoria> findAll(){
+	public List<Cidade> findAll(){
 	return repo.findAll();
 }
 }
