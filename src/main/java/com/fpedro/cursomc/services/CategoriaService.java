@@ -2,11 +2,12 @@ package com.fpedro.cursomc.services;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Service;
+
 import com.fpedro.cursomc.domain.Categoria;
 import com.fpedro.cursomc.repositories.CategoriaRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 @Service
 public class CategoriaService {
@@ -18,14 +19,25 @@ public class CategoriaService {
 		return obj.orElseThrow(() -> new com.fpedro.cursomc.services.exception.ObjectNotFoundException(
 				"Objeto não encontrado ! Id: " + id + ", Tipo: " + Categoria.class.getName()));
 	}
-	
+
 	public Categoria insert(Categoria obj) {
 		obj.setId(null);
 		return repo.save(obj);
 	}
-	
+
 	public Categoria update(Categoria obj) {
 		find(obj.getId());
 		return repo.save(obj);
+	}
+
+	public void delete(Integer id) {
+		find(id);
+		try {
+			repo.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityViolationException("não é possível excluir uma categoria que possui usuarios");
+			
+
+		}
 	}
 }

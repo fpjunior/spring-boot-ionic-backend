@@ -2,6 +2,7 @@ package com.fpedro.cursomc.services;
 
 import java.util.Optional;
 
+import com.fpedro.cursomc.domain.Categoria;
 import com.fpedro.cursomc.domain.Cliente;
 import com.fpedro.cursomc.repositories.ClienteRepository;
 
@@ -18,4 +19,14 @@ public class ClienteService {
                 return obj.orElseThrow(() -> new com.fpedro.cursomc.services.exception.ObjectNotFoundException(
                                 "Objeto não encontrado ! Id: " + id + ", Tipo: " + Cliente.class.getName()));
         }
+        
+    	public Cliente insert(Cliente obj) {
+    		obj.setId(null);
+    		return repo.save(obj);
+    	}
+    	
+    	public Cliente update(Cliente obj) {
+    		find(obj.getId());
+    		return repo.save(obj);
+    	}
 }
