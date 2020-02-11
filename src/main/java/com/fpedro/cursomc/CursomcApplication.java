@@ -65,6 +65,11 @@ public class CursomcApplication implements CommandLineRunner {
 
 		Categoria cat1 = new Categoria(null, "Motorista");
 		Categoria cat2 = new Categoria(null, "Carona");
+		Categoria cat3 = new Categoria(null, "Administrador");
+		Categoria cat4 = new Categoria(null, "Administrador 2");
+		Categoria cat5 = new Categoria(null, "Administrador 3");
+		Categoria cat6 = new Categoria(null, "Administrador 4");
+		Categoria cat7 = new Categoria(null, "Administrador 5");
 
 		Usuario p1 = new Usuario(null, "Fernando", 33);
 		Usuario p2 = new Usuario(null, "Renato", 32);
@@ -73,8 +78,13 @@ public class CursomcApplication implements CommandLineRunner {
 
 		cat1.getUsuarios().addAll(Arrays.asList(p1, p4));
 		cat2.getUsuarios().addAll(Arrays.asList(p1, p2, p3, p4));
+		cat3.getUsuarios().addAll(Arrays.asList(p1));
+		cat4.getUsuarios().addAll(Arrays.asList(p1));
+		cat5.getUsuarios().addAll(Arrays.asList(p1));
+		cat6.getUsuarios().addAll(Arrays.asList(p1));
+		cat6.getUsuarios().addAll(Arrays.asList(p1));
 
-		p1.getCategorias().addAll(Arrays.asList(cat1, cat2));
+		p1.getCategorias().addAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
 		p2.getCategorias().addAll(Arrays.asList(cat2));
 		p3.getCategorias().addAll(Arrays.asList(cat2));
 		p4.getCategorias().addAll(Arrays.asList(cat1, cat2));
@@ -92,7 +102,7 @@ public class CursomcApplication implements CommandLineRunner {
 		est2.getCidades().addAll(Arrays.asList(c2));
 		est3.getCidades().addAll(Arrays.asList(c3));
 
-		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
 		usuarioRepository.saveAll(Arrays.asList(p1, p2, p3, p4));
 
 		estadoRepository.saveAll(Arrays.asList(est1, est2, est3));
