@@ -3,8 +3,6 @@ package com.fpedro.cursomc.services;
 import java.util.List;
 import java.util.Optional;
 
-import javax.print.attribute.standard.PageRanges;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -50,10 +48,9 @@ public class CategoriaService {
 		return repo.findAll();
 	}
 	
-//	public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
-//		PageRequest pageRequest = new PageRequest(page, linesPerPage, Direction.valueOf (direction), orderBy);
-//		return.repo.findAll(pageRequest);
-//	}
 	
-
+	public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
+		PageRequest pageRequest =  PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		return repo.findAll(pageRequest);
+	}
 }
