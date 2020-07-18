@@ -9,26 +9,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fpedro.cursomc.domain.Usuario;
-import com.fpedro.cursomc.services.UsuarioService;
+import com.fpedro.cursomc.domain.Produto;
+import com.fpedro.cursomc.services.ProdutoService;
 
 @RestController
-@RequestMapping(value="/usuarios")
-public class UsuarioResource {
+@RequestMapping(value="/Produtos")
+public class ProdutoResource {
 	
 	@Autowired
-	private UsuarioService service;
+	private ProdutoService service;
  
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Usuario> find(@PathVariable final Integer id) {
-		final Usuario obj = service.find(id);
+	public ResponseEntity<Produto> find(@PathVariable final Integer id) {
+		final Produto obj = service.find(id);
 			return ResponseEntity.ok().body(obj);		
 			
 	}
 	
 	@RequestMapping( method = RequestMethod.GET)
-	public ResponseEntity <List<Usuario>> findAll() {
-		List<Usuario> list = service.findAll();
+	public ResponseEntity <List<Produto>> findAll() {
+		List<Produto> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 
 	}

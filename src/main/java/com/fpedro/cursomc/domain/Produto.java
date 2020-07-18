@@ -18,7 +18,7 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Usuario implements Serializable {
+public class Produto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -29,21 +29,21 @@ public class Usuario implements Serializable {
 
 	@JsonIgnore
 	@ManyToMany
-	@JoinTable(name = "USUARIO_CATEGORIA", 
-		joinColumns = @JoinColumn(name = "usuario_id"), 
+	@JoinTable(name = "Produto_CATEGORIA", 
+		joinColumns = @JoinColumn(name = "Produto_id"), 
 		inverseJoinColumns = @JoinColumn(name = "categoria_id"))
 	
 	private List<Categoria> categorias = new ArrayList<>();
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "id.usuario")
+	@OneToMany(mappedBy = "id.Produto")
 	private Set<ItemSolicitacao> itens = new HashSet<>();
 
-	public Usuario() {
+	public Produto() {
 
 	}
 
-	public Usuario(Integer id, String nome, Integer idade) {
+	public Produto(Integer id, String nome, Integer idade) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -115,7 +115,7 @@ public class Usuario implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		Produto other = (Produto) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

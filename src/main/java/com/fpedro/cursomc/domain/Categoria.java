@@ -22,7 +22,7 @@ public class Categoria implements Serializable {
 	 
 	 
 	 @ManyToMany(mappedBy = "categorias")
-	 private List<Usuario> usarioos = new ArrayList<>();
+	 private List<Produto> usarioos = new ArrayList<>();
  
  public Categoria () {
 	 		
@@ -50,12 +50,12 @@ public void setNome(String nome) {
 	this.nome = nome;
 }
 
-public List<Usuario> getUsuarios() {
+public List<Produto> getProdutos() {
 	return usarioos;
 	}
 
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usarioos = usuarios;
+	public void setProdutos(List<Produto> Produtos) {
+		this.usarioos = Produtos;
 }
 
 @Override

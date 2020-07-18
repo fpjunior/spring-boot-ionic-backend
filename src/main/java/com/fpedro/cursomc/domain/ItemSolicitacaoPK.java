@@ -16,8 +16,8 @@ public class ItemSolicitacaoPK implements Serializable {
 	private Solicitacao solicitacao;
 
 	@ManyToOne
-	@JoinColumn(name = "usuario_id")
-	private Usuario usuario;
+	@JoinColumn(name = "Produto_id")
+	private Produto Produto;
 
 	public Solicitacao getSolicitacao() {
 		return solicitacao;
@@ -27,12 +27,12 @@ public class ItemSolicitacaoPK implements Serializable {
 		this.solicitacao = solicitacao;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public Produto getProduto() {
+		return Produto;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setProduto(Produto Produto) {
+		this.Produto = Produto;
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class ItemSolicitacaoPK implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((solicitacao == null) ? 0 : solicitacao.hashCode());
-		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
+		result = prime * result + ((Produto == null) ? 0 : Produto.hashCode());
 		return result;
 	}
 
@@ -58,10 +58,10 @@ public class ItemSolicitacaoPK implements Serializable {
 				return false;
 		} else if (!solicitacao.equals(other.solicitacao))
 			return false;
-		if (usuario == null) {
-			if (other.usuario != null)
+		if (Produto == null) {
+			if (other.Produto != null)
 				return false;
-		} else if (!usuario.equals(other.usuario))
+		} else if (!Produto.equals(other.Produto))
 			return false;
 		return true;
 	}

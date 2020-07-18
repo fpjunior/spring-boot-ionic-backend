@@ -18,7 +18,7 @@ import com.fpedro.cursomc.domain.Pagamento;
 import com.fpedro.cursomc.domain.PagamentoComBoleto;
 import com.fpedro.cursomc.domain.PagamentoComCartao;
 import com.fpedro.cursomc.domain.Solicitacao;
-import com.fpedro.cursomc.domain.Usuario;
+import com.fpedro.cursomc.domain.Produto;
 import com.fpedro.cursomc.enums.EstadoPagamento;
 import com.fpedro.cursomc.enums.TipoCliente;
 import com.fpedro.cursomc.repositories.CategoriaRepository;
@@ -29,7 +29,7 @@ import com.fpedro.cursomc.repositories.EstadoRepository;
 import com.fpedro.cursomc.repositories.ItemSolicitacaoRepository;
 import com.fpedro.cursomc.repositories.PagamentoRepository;
 import com.fpedro.cursomc.repositories.SolicitacaoRepository;
-import com.fpedro.cursomc.repositories.UsuarioRepository;
+import com.fpedro.cursomc.repositories.ProdutoRepository;
 
 @SpringBootApplication
 public class CursomcApplication implements CommandLineRunner {
@@ -37,7 +37,7 @@ public class CursomcApplication implements CommandLineRunner {
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private ProdutoRepository ProdutoRepository;
 	@Autowired
 	private EstadoRepository estadoRepository;
 	@Autowired
@@ -71,18 +71,18 @@ public class CursomcApplication implements CommandLineRunner {
 		Categoria cat6 = new Categoria(null, "Administrador 4");
 		Categoria cat7 = new Categoria(null, "Administrador 5");
 
-		Usuario p1 = new Usuario(null, "Fernando", 33);
-		Usuario p2 = new Usuario(null, "Renato", 32);
-		Usuario p3 = new Usuario(null, "Andreson", 35);
-		Usuario p4 = new Usuario(null, "Arthur", 25);
+		Produto p1 = new Produto(null, "Fernando", 33);
+		Produto p2 = new Produto(null, "Renato", 32);
+		Produto p3 = new Produto(null, "Andreson", 35);
+		Produto p4 = new Produto(null, "Arthur", 25);
 
-		cat1.getUsuarios().addAll(Arrays.asList(p1, p4));
-		cat2.getUsuarios().addAll(Arrays.asList(p1, p2, p3, p4));
-		cat3.getUsuarios().addAll(Arrays.asList(p1));
-		cat4.getUsuarios().addAll(Arrays.asList(p1));
-		cat5.getUsuarios().addAll(Arrays.asList(p1));
-		cat6.getUsuarios().addAll(Arrays.asList(p1));
-		cat6.getUsuarios().addAll(Arrays.asList(p1));
+		cat1.getProdutos().addAll(Arrays.asList(p1, p4));
+		cat2.getProdutos().addAll(Arrays.asList(p1, p2, p3, p4));
+		cat3.getProdutos().addAll(Arrays.asList(p1));
+		cat4.getProdutos().addAll(Arrays.asList(p1));
+		cat5.getProdutos().addAll(Arrays.asList(p1));
+		cat6.getProdutos().addAll(Arrays.asList(p1));
+		cat6.getProdutos().addAll(Arrays.asList(p1));
 
 		p1.getCategorias().addAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
 		p2.getCategorias().addAll(Arrays.asList(cat2));
@@ -103,7 +103,7 @@ public class CursomcApplication implements CommandLineRunner {
 		est3.getCidades().addAll(Arrays.asList(c3));
 
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
-		usuarioRepository.saveAll(Arrays.asList(p1, p2, p3, p4));
+		ProdutoRepository.saveAll(Arrays.asList(p1, p2, p3, p4));
 
 		estadoRepository.saveAll(Arrays.asList(est1, est2, est3));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3, c4));
