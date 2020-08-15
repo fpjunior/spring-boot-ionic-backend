@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.fpedro.cursomc.domain.Cliente;
@@ -32,5 +33,15 @@ public class ClienteService {
     	
     	public List<Cliente> findAll(){
     	return repo.findAll();
-    	}
+		}
+		
+		// public void delete(Integer id){
+		// 	find(id);
+		// 	try {
+		// 		repo.delete(id);
+		// 	} catch (DataIntegrityViolationException e) {
+		// 		throw new DataIntegrityViolationException("Não é possível excluir uma categoria que possui produtos");
+		// 	}
+		// }
+		
 }
