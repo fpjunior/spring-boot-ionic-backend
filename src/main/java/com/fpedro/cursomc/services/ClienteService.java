@@ -5,9 +5,15 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.fpedro.cursomc.domain.Categoria;
 import com.fpedro.cursomc.domain.Cliente;
+import com.fpedro.cursomc.dto.CategoriaDTO;
+import com.fpedro.cursomc.dto.ClienteDTO;
 import com.fpedro.cursomc.repositories.ClienteRepository;
 
 @Service
@@ -31,17 +37,27 @@ public class ClienteService {
     		return repo.save(obj);
     	}
     	
-    	public List<Cliente> findAll(){
-    	return repo.findAll();
+		public void delete(Integer id) {
+			find(id);
+			try {
+				repo.deleteById(id);
+			} catch (DataIntegrityViolationException e) {
+				throw new DataIntegrityViolationException("não é possível excluir uma categoria que possui Produtos");
+	
+			}
+		}
+	
+		public List<Cliente> findAll() {
+			return repo.findAll();
 		}
 		
-		// public void delete(Integer id){
-		// 	find(id);
-		// 	try {
-		// 		repo.delete(id);
-		// 	} catch (DataIntegrityViolationException e) {
-		// 		throw new DataIntegrityViolationException("Não é possível excluir uma categoria que possui produtos");
-		// 	}
-		// }
+		public Page<Cliente> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
+			PageRequest pageRequest =  PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+			return repo.findAll(pageRequest);
+		}
+	
+		public Cliente fromDTO(ClienteDTO objDto){
+			return new Cliente(objDto.getId(), objDto.getNome(), objDto.getEmail(), null, null);
+		}
 		
 }
