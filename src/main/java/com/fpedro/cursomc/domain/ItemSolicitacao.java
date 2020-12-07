@@ -23,11 +23,11 @@ public class ItemSolicitacao implements Serializable {
 
 	}
 
-	public ItemSolicitacao(Solicitacao solicitacao, Produto Produto, Double desconto, Integer quantidade,
+	public ItemSolicitacao(Solicitacao solicitacao, Usuario Usuario, Double desconto, Integer quantidade,
 			Double preco) {
 		super();
 		id.setSolicitacao(solicitacao);
-		id.setProduto(Produto);
+		// id.setUsuario(Usuario);
 		this.desconto = desconto;
 		this.quantidade = quantidade;
 		this.preco = preco;
@@ -40,9 +40,9 @@ public class ItemSolicitacao implements Serializable {
 	}
 	
 	
-	public Produto getProduto() {
-		return id.getProduto();
-	}
+	// public Usuario getUsuario() {
+	// 	return id.getUsuario();
+	// }
 
 	public ItemSolicitacaoPK getId() {
 		return id;

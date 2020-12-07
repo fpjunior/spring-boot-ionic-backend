@@ -19,8 +19,8 @@ public class Categoria implements Serializable {
 	 private Integer id;
 	 private String nome;
 	 
-	 @ManyToMany(mappedBy = "categorias")
-	 private List<Produto> usarioos = new ArrayList<>();
+	//  @ManyToMany(mappedBy = "categorias")
+	//  private List<Usuario> usuarios = new ArrayList<>();
  
  public Categoria () {
 	 		
@@ -48,13 +48,13 @@ public void setNome(String nome) {
 	this.nome = nome;
 }
 
-public List<Produto> getProdutos() {
-	return usarioos;
-	}
+// public List<Usuario> getUsuarios() {
+// 	return usuarios;
+// 	}
 
-	public void setProdutos(List<Produto> Produtos) {
-		this.usarioos = Produtos;
-}
+// 	public void setUsuarios(List<Usuario> Usuarios) {
+// 		this.usuarios = Usuarios;
+// }
 
 @Override
 public int hashCode() {

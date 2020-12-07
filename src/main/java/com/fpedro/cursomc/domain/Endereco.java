@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Endereco implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String logradouro;
@@ -25,13 +26,18 @@ public class Endereco implements Serializable {
     private String cep;
 
     @JsonIgnore
-    @ManyToOne 
+    @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
     @ManyToOne
     @JoinColumn(name = "cidade_id")
     private Cidade cidade;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
     public Endereco() {
 
@@ -137,6 +143,5 @@ public class Endereco implements Serializable {
             return false;
         return true;
     }
-
 
 }

@@ -36,7 +36,7 @@ public class CidadeService {
 		try {
 			repo.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityViolationException("não é possível excluir uma categoria que possui Produtos");
+			throw new DataIntegrityViolationException("não é possível excluir uma categoria que possui Usuarios");
 			
 
 		}
