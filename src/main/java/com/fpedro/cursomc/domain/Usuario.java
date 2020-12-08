@@ -2,16 +2,19 @@ package com.fpedro.cursomc.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
@@ -46,6 +49,10 @@ public class Usuario implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco_id_fk")
     private Endereco endereco;
+
+    @ElementCollection
+    @CollectionTable(name = "TELEFONE")
+    private Set<String> telefones = new HashSet<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "usuario")
@@ -158,6 +165,22 @@ public class Usuario implements Serializable {
     // }
 
     public Usuario(List<Evento> eventos) {
+        this.eventos = eventos;
+    }
+
+    public Set<String> getTelefones() {
+        return telefones;
+    }
+
+    public void setTelefones(Set<String> telefones) {
+        this.telefones = telefones;
+    }
+
+    public List<Evento> getEventos() {
+        return eventos;
+    }
+
+    public void setEventos(List<Evento> eventos) {
         this.eventos = eventos;
     }
 

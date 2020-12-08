@@ -34,7 +34,7 @@ public class Evento {
 
     @NotBlank
     @Size(max = 255, min = 3)
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String categoria;
 
     // @PastOrPresent(message = "Data não pode ser maior que a data atual")
